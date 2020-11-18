@@ -18,6 +18,7 @@ class AddPhotoActivity : AppCompatActivity() {
 
     private val pickPhotoRequestCode = 2
     private lateinit var addPhotoViewModel:AddPhotoViewModel
+    private var imageUri = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +28,7 @@ class AddPhotoActivity : AppCompatActivity() {
         openButton.setOnClickListener{
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                 addCategory(Intent.CATEGORY_OPENABLE)
-                setType("image/jpeg")
+                type = "image/jpeg"
             }
             startActivityForResult(intent, pickPhotoRequestCode)
         }
