@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(PhotoViewModel::class.java)
         viewModel.allPhotos.observe(this, Observer { photos ->
-            photos?.let { adapter.setPhotos(it) }
+            photos?.let {adapter.setPhotos(it)}
         })
 
 

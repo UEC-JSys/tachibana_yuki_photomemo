@@ -2,6 +2,7 @@ package com.yuki.photomemo.View
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -18,7 +19,7 @@ class AddPhotoActivity : AppCompatActivity() {
 
     private val pickPhotoRequestCode = 2
     private lateinit var addPhotoViewModel: AddPhotoViewModel //初期化忘れ
-    private var imageUri = null
+    private  var imageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +54,14 @@ class AddPhotoActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == pickPhotoRequestCode && resultCode == Activity.RESULT_OK) {
             data?.data?.let {
+                if (android.os.Build.VERSION.SDK_INT >=
+                    android.os.Build.VERSION_CODES.R)
+                    contentResolver.takePersistableUriPermission(
+                        it, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
                 val imageView = findViewById<ImageView>(R.id.addPhotoImageView)
                 imageView.setImageURI(it)
+                imageUri = it
             }
         }
     }
