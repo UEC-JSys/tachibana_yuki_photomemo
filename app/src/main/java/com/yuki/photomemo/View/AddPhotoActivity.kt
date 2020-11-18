@@ -8,9 +8,11 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.lifecycle.ViewModelProvider
 import com.yuki.photomemo.ViewModel.AddPhotoViewModel
 import com.yuki.photomemo.Model.Photo
 import com.yuki.photomemo.R
+import com.yuki.photomemo.ViewModel.PhotoViewModel
 
 class AddPhotoActivity : AppCompatActivity() {
 
@@ -34,6 +36,7 @@ class AddPhotoActivity : AppCompatActivity() {
         val saveButton: Button = findViewById(R.id.addPhotoSaveButton)
         saveButton.setOnClickListener {
             val editText = findViewById<EditText>(R.id.addPhotoEditText)
+            val addPhotoViewModel = ViewModelProvider(this).get(addPhotoViewModel::class.java)
             val replyIntent = Intent()
             if (imageUri == null || TextUtils.isEmpty(editText.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
