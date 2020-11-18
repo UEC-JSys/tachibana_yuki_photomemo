@@ -1,15 +1,24 @@
 package com.yuki.photomemo
 
 import android.app.Activity
+import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AddPhotoActivity : AppCompatActivity() {
 
     private val pickPhotoRequestCode = 2
+    private lateinit var addPhotoViewModel:AddPhotoViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_photo)
@@ -21,6 +30,20 @@ class AddPhotoActivity : AppCompatActivity() {
                 setType("image/jpeg")
             }
             startActivityForResult(intent, pickPhotoRequestCode)
+        }
+
+        val saveButton: Button = findViewById(R.id.addPhotoSaveButton)
+        saveButton.setOnClickListener {
+            val editText = findViewById<EditText>(R.id.addPhotoEditText)
+            val replyIntent = Intent()
+            if (imageUri == null || TextUtils.isEmpty(editText.text)) {
+                setResult(Activity.RESULT_CANCELED, replyIntent)
+            } else {
+                val photo = Photo(imageUri.toString(), editText.text.toString())
+                addPhotoViewModel.insert(photo)
+                setResult(Activity.RESULT_OK, replyIntent)
+            }
+            finish()
         }
     }
 
@@ -35,3 +58,4 @@ class AddPhotoActivity : AppCompatActivity() {
     }
 
 }
+
