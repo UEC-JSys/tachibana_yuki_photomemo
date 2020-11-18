@@ -1,7 +1,6 @@
-package com.yuki.photomemo
+package com.yuki.photomemo.View
 
 import android.app.Activity
-import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,15 +8,14 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.yuki.photomemo.ViewModel.AddPhotoViewModel
+import com.yuki.photomemo.Model.Photo
+import com.yuki.photomemo.R
 
 class AddPhotoActivity : AppCompatActivity() {
 
     private val pickPhotoRequestCode = 2
-    private lateinit var addPhotoViewModel:AddPhotoViewModel
+    private lateinit var addPhotoViewModel: AddPhotoViewModel //初期化忘れ
     private var imageUri = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

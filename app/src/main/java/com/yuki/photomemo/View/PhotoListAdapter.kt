@@ -1,4 +1,4 @@
-package com.yuki.photomemo
+package com.yuki.photomemo.View
 
 import android.content.Context
 import android.net.Uri
@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.yuki.photomemo.Model.Photo
+import com.yuki.photomemo.R
 
 class PhotoListAdapter internal constructor(context: Context) : RecyclerView.Adapter<PhotoListAdapter.PhotoViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)

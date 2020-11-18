@@ -1,4 +1,4 @@
-package com.yuki.photomemo
+package com.yuki.photomemo.Model
 
 import android.content.Context
 import androidx.room.Database

@@ -1,4 +1,4 @@
-package com.yuki.photomemo
+package com.yuki.photomemo.Model
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

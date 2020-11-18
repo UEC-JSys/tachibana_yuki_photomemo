@@ -1,8 +1,11 @@
-package com.yuki.photomemo
+package com.yuki.photomemo.ViewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.yuki.photomemo.Model.Photo
+import com.yuki.photomemo.Model.PhotoRepository
+import com.yuki.photomemo.Model.PhotoRoomDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
